@@ -109,7 +109,7 @@ resource "aws_key_pair" "generated_key" {
   public_key = "${file("~/.ssh/id_rsa.pub")}"
 }
 
-variable "ami" {
+variable "ami_id" {
     description = "ami"
     type = string
     default = "ami-09d56f8956ab235b3"
@@ -122,7 +122,7 @@ variable "instance_type" {
 }
 
 resource "aws_instance" "terraforminstance" {
-  ami                         = var.ami
+  ami                         = var.ami_id
   instance_type               = var.instance_type
   vpc_security_group_ids = [aws_security_group.instance1606.id]
   key_name                    = aws_key_pair.generated_key.key_name
